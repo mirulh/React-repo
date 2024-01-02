@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="./rps.css" />
+  </head>
+  <body>
+    <div class="full-layout">
+      <h1>ROCK PAPER SCISSORS</h1>
+      <div class="rounds">Rounds: 0</div>
+      <div class="scoreboard">
+        <h3>Scoreboard</h3>
+        <div class="p1">Player 1:</div>
+        <div class="p1-score">0</div>
+        <div class="p2">Player 2:</div>
+        <div class="p2-score">0</div>
+        <div class="tie">Tie(s):</div>
+        <div class="tieCount">0</div>
+        <div class="res">Result:</div>
+        <div class="result">-</div>
+        <div>Final Result:</div>
+        <div class="final-result">-</div>
+      </div>
+      <div class="selections">
+        <h3>Select weapons</h3>
+        <button>Rock</button>
+        <button>Paper</button>
+        <button>Scissors</button>
+      </div>
+    </div>
+    <script>
+      // DOM
+      const currentRound = document.querySelector('.rounds');
+      const result = document.querySelector('.result');
+      const player1 = document.querySelector('.p1');
+      const player2 = document.querySelector('.p2');
+      const final = document.querySelector('.final-result');
+      const p1Score = document.querySelector('.p1-score');
+      const p2Score = document.querySelector('.p2-score');
+      const tieCount = document.querySelector('.tieCount');
+
+      //declare array
+      const selection = ['rock', 'paper', 'scissors'];
+
+      let tie = 0;
+
+      let rounds = 0;
+
+      let score1 = 0;
+
+      let score2 = 0;
+
+      const random = Math.floor(Math.random() * selection.length);
+
+      // declare all the dom
+      const buttons = document.querySelectorAll('button');
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', function (e) {
+          // get my choice
+          let myChoice = e.target.innerText.toLowerCase();
+          console.log('player', myChoice);
+          // get computer choice
+
+          computerChoice = selection[random];
+          console.log('computer', computerChoice);
+
+          if (rounds < 5) {
+            if (myChoice === computerChoice) {
+              player1.innerText = `Player 1: choose ${myChoice}`;
+              player2.innerText = `Player 2: choose ${computerChoice}`;
+              tie++;
+              tieCount.innerText = tie;
+              result.innerText = 'tie';
+            } //
+            else if (
+              (myChoice === 'rock' && computerChoice === 'scissors') ||
+              (myChoice === 'scissors' && computerChoice === 'paper') ||
+              (myChoice === 'paper' && computerChoice === 'rock')
+            ) {
+              player1.innerText = `Player 1: choose ${myChoice}`;
+              player2.innerText = `Player 2: choose ${computerChoice}`;
+              result.innerText = 'Player gets a point';
+              score1++;
+              p1Score.innerText = score1;
+            } //
+            else {
+              player1.innerText = `Player 1: choose ${myChoice}`;
+              player2.innerText = `Player 2: choose ${computerChoice}`;
+              result.innerText = 'Computer gets a point';
+              score2++;
+              p2Score.innerText = score2;
+            }
+            rounds++;
+            currentRound.innerText = `Rounds: ${rounds}`;
+          }
+          if (rounds === 5) {
+            if (score1 > score2) {
+              final.innerText = 'Player 1 WON!';
+            } else if (score1 < score2) {
+              final.innerText = 'Player 2 WON!';
+            } else {
+              final.innerText = 'TIE!';
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

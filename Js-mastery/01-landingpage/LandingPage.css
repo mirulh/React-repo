@@ -1,0 +1,188 @@
+:root {
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* EXP: nav bar */
+
+#bgColor1 {
+  background-color: #1f2937;
+}
+
+.white-line {
+  border-bottom: 1px solid white;
+}
+
+#nav-bar {
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0rem 1rem 0rem 1rem;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+/* EXP:  */
+
+#top {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  color: white;
+  padding: 4rem 1rem 10rem 1rem;
+}
+
+#top h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #f9faf8;
+}
+
+img {
+  height: 70%;
+  width: 70%;
+}
+
+#top button {
+  background-color: #3882f6;
+  padding: 5px 15px;
+  border-radius: 5px;
+  border-style: none;
+  color: white;
+}
+
+/* EXP:  */
+
+#middle {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem 10rem 1rem;
+  text-align: center;
+}
+
+#middle h2 {
+  margin-bottom: 50px;
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box p {
+  width: 170px;
+}
+
+.info-img {
+  height: 170px;
+  width: 170px;
+  border: 1px solid #3882f6;
+}
+
+/* EXP:  */
+
+#bgColor3 {
+  background-color: #e5e7eb;
+}
+
+#end {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 1rem 10rem 1rem;
+}
+
+.quote {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 30px;
+}
+
+.quote p:nth-child(1) {
+  font-style: italic;
+  color: #1f2937;
+}
+
+.quote p:nth-child(2) {
+  font-weight: 700;
+}
+
+/* EXP:  */
+
+#contact {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1rem 5rem 1rem;
+  color: white;
+}
+
+#contact h3 {
+  margin: 0px;
+}
+
+#contact p {
+  padding-top: 20px;
+}
+
+.action-time {
+  background-color: #3882f6;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem 0rem 3rem 0rem;
+  align-items: center;
+}
+
+.call-to {
+  display: flex;
+  flex-direction: column;
+}
+
+#contact button {
+  border: 1px solid white;
+  background-color: #3882f6;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: white;
+  width: 6rem;
+  height: 2rem;
+}
+
+/* EXP:  */
+
+#bgColor5 {
+  background-color: #1f2937;
+}
+
+#footer {
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}

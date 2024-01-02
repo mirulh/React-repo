@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Quiz</title>
+    <style>
+      :root {
+      }
+
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      body {
+        margin: 1rem auto;
+        padding: 3rem;
+      }
+
+      header {
+        width: 50%;
+        margin: 0px auto;
+      }
+
+      #score {
+        margin: 1rem 0;
+      }
+
+      .full-layout {
+        min-width: 25rem;
+        max-width: 50%;
+        margin: 0px auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .statement {
+        padding: 3rem;
+        border: 1px solid black;
+        border-radius: 0.5rem;
+        margin: 1rem 0;
+        text-align: center;
+      }
+
+      .explanation {
+        margin: 1rem 0;
+      }
+
+      .options {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      button {
+        padding: 10px;
+      }
+
+      .correct {
+        background-color: lightgreen;
+      }
+
+      .incorrect {
+        background-color: lightpink;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Quiz.js</h1>
+      <div>Do you know JS? Find out!</div>
+      <div id="score">
+        Score: <span id="correctAnswer">0</span> / <span id="completed">0</span>
+      </div>
+    </header>
+    <div class="full-layout">
+      <div class="statement"></div>
+      <div class="options">
+        <button class="option">true</button>
+        <button class="option">false</button>
+        <button class="next">next question</button>
+      </div>
+      <div class="explanation"></div>
+    </div>
+
+    <script type="text/javascript">
+      const facts = [
+        {
+          statement: 'JavaScript was invented in 1995',
+          answer: 'true',
+          explanation:
+            'Brendan Eich created JS at Netscape in 1995. The initial version of the language was written in just 10 days.',
+        },
+        {
+          statement: 'Strings in JS are editable values',
+          answer: 'false',
+          explanation:
+            'In JavaScript strings are immutable values, meaning they cannot be edited; however, they can replaced with new, different strings.',
+        },
+        {
+          statement: '1 + 1 === 2',
+          answer: 'true',
+          explanation: 'The plus operator gives the sum of two numbers.',
+        },
+        {
+          statement: "'1' + '1' === '2'",
+          answer: 'false',
+          explanation:
+            "The plus operator concatenates (joins together) strings, so '1' + '1' === '11'.",
+        },
+        {
+          statement: "typeof ['J', 'S'] === 'array'",
+          answer: 'false',
+          explanation:
+            "Arrays have the type 'object'. In JS, everything is either a primitive data type (e.g. 'string', 'number') or an object. Arrays are a kind of object with some special properties.  ",
+        },
+      ];
+
+      const optionButtons = document.querySelectorAll('.option');
+      const nextButton = document.querySelector('.next');
+      const displayQuestion = document.querySelector('.statement');
+      const displayExplanation = document.querySelector('.explanation');
+
+      const correctAnswer = document.getElementById('correctAnswer');
+      const completed = document.getElementById('completed');
+
+      let num = 0;
+      let myScore = 0;
+
+      function correctButton(button) {
+        button.classList.add('correct');
+      }
+
+      function wrongButton(button) {
+        button.classList.add('incorrect');
+      }
+
+      function removeColors() {
+        optionButtons.forEach((button) => {
+          button.classList.remove('correct');
+          button.classList.remove('incorrect');
+        });
+      }
+
+      function enableButton() {
+        optionButtons.forEach((button) => {
+          button.disabled = false;
+        });
+      }
+
+      function disableButton() {
+        optionButtons.forEach((button) => {
+          button.disabled = true;
+        });
+      }
+
+      // NEXT
+      nextButton.addEventListener('click', (e) => {
+        console.log(e.target.innerText);
+
+        if (num < facts.length) {
+          rerenderQuestion();
+          displayExplanation.innerText = '';
+          removeColors();
+          enableButton();
+          nextButton.disabled = false;
+        } //
+        else {
+          alert('end of the question');
+        }
+        nextButton.disabled = true;
+      });
+
+      function checkAnswers(choice) {
+        // myAnswer.classList.add('correct');
+        let myAnswer = choice.innerText;
+        console.log(myAnswer);
+
+        if (facts[num].answer === myAnswer) {
+          correctButton(choice);
+          disableButton();
+          displayExplanation.innerText = facts[num].explanation;
+          num++;
+          myScore++;
+          completed.innerText = num;
+          correctAnswer.innerText = myScore;
+        } //
+        else {
+          wrongButton(choice);
+          disableButton();
+          displayExplanation.innerText = facts[num].explanation;
+          num++;
+          completed.innerText = num;
+        }
+        nextButton.disabled = false;
+      }
+
+      function rerenderQuestion() {
+        displayQuestion.innerText = facts[num].statement;
+      }
+
+      function init() {
+        rerenderQuestion();
+        nextButton.disabled = true;
+        optionButtons.forEach((button) => {
+          button.addEventListener('click', (e) => {
+            choice = e.target;
+            checkAnswers(choice);
+          });
+        });
+      }
+
+      init();
+    </script>
+  </body>
+</html>
